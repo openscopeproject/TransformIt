@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 6.3499999 6.35"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="icon_64.png"
+   inkscape:export-xdpi="255.99994"
+   inkscape:export-ydpi="255.99994"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="29.276992"
+     inkscape:cx="8.23172"
+     inkscape:cy="11.16918"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="1432"
+     inkscape:window-y="904"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker1561"
+       refX="0"
+       refY="0"
+       orient="0"
+       inkscape:stockid="Square"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 5.6666667 5.6666667"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M -5,-5 V 5 H 5 V -5 Z"
+         id="path1559" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Square"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Square"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 5.6666667 5.6666667"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M -5,-5 V 5 H 5 V -5 Z"
+         id="Squere" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#476d00;fill-opacity:1;stroke:#595959;stroke-width:0;stroke-linecap:square;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect2779"
+       width="6.3500004"
+       height="6.3500004"
+       x="-4.5312498e-07"
+       y="-4.5312498e-07" />
+    <rect
+       style="fill:#393b41;fill-opacity:1;stroke:#f8ff76;stroke-width:0.26458333;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Square);marker-mid:url(#marker1561);stroke-miterlimit:3"
+       id="rect267"
+       width="4.4841428"
+       height="4.4841413"
+       x="0.93292868"
+       y="0.93292868" />
+    <rect
+       style="fill:#393b41;fill-opacity:1;stroke:#f8ff76;stroke-width:0.267765;stroke-linecap:square;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#marker1561);marker-mid:url(#marker1561)"
+       id="rect1054"
+       width="2.3717051"
+       height="2.3717046"
+       x="1.9891474"
+       y="1.9891474" />
+  </g>
+</svg>
