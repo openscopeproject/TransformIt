@@ -1,5 +1,7 @@
 # Transform It plugin for KiCad
 
+![Icon](https://github.com/openscopeproject/TransformIt/blob/main/icon/icon_large.png?raw=true)
+
 Batch resize, scale, mirror graphics, tracks, zones, footprints and
 other items in the PCB editor.
 

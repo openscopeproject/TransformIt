@@ -1,6 +1,7 @@
-import pcbnew
-import os
 import math
+import os
+import pcbnew
+import re
 import wx
 
 
@@ -19,7 +20,13 @@ class TransformItPlugin(pcbnew.ActionPlugin):
         self.icon_file_name = os.path.join(icon_dir, "icon.png")
         self.description = "Scale, mirror, flip, rotate items"
 
-        self.kicad_version = list(map(int, pcbnew.Version().split('.')))
+        self.kicad_version = None
+        try:
+            version = re.search("\\d+\\.\\d+\\.\\d+",
+                                pcbnew.Version()).group(0)
+            self.kicad_version = list(map(int, version.split('.')))
+        except Exception:
+            pass
 
         self.config = Config()
 
