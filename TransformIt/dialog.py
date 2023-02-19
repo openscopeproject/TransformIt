@@ -1,3 +1,5 @@
+import wx
+
 from dataclasses import dataclass
 from math import pi
 
@@ -16,6 +18,11 @@ class Config:
 class ConfigDialog(ConfigDialogBase):
     def __init__(self):
         ConfigDialogBase.__init__(self, None)
+        self.Bind(wx.EVT_TOGGLEBUTTON, self.OnLinkToggle, self.m_linkButton)
+        self.Bind(wx.EVT_SPINCTRLDOUBLE,
+                  self.OnHorizontalScaleChange, self.m_horizontalScale)
+        self.Bind(wx.EVT_CHECKBOX, self.OnHorizontalMirrorChange,
+                  self.m_horizontalMirror)
 
     def GetConfig(self) -> Config:
         return Config(
@@ -32,3 +39,21 @@ class ConfigDialog(ConfigDialogBase):
             # track_width
             self.m_trackWidth.Value * 0.01
         )
+
+    def OnLinkToggle(self, event: wx.CommandEvent):
+        if event.GetEventObject().GetValue():
+            self.m_verticalScale.Enable(False)
+            self.m_verticalScale.SetValue(self.m_horizontalScale.Value)
+            self.m_verticalMirror.Enable(False)
+            self.m_verticalMirror.SetValue(self.m_horizontalMirror.Value)
+        else:
+            self.m_verticalScale.Enable()
+            self.m_verticalMirror.Enable()
+
+    def OnHorizontalScaleChange(self, event: wx.CommandEvent):
+        if self.m_linkButton.Value:
+            self.m_verticalScale.SetValue(self.m_horizontalScale.Value)
+
+    def OnHorizontalMirrorChange(self, event: wx.CommandEvent):
+        if self.m_linkButton.Value:
+            self.m_verticalMirror.SetValue(self.m_horizontalMirror.Value)
