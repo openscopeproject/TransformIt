@@ -18,10 +18,11 @@ unzip "$ARCHIVE" -d releases/tmp/
 mv releases/tmp/TransformIt releases/tmp/plugins
 
 cd releases/tmp
-PCM_ARCHIVE="../$TAG/TransformIt_"$TAG"_pcm.zip"
+PCM_ARCHIVE="../$TAG/TransformIt_v"$TAG"_pcm.zip"
 if [ -f "$PCM_ARCHIVE" ]; then
     rm "$PCM_ARCHIVE"
 fi
 zip -r "$PCM_ARCHIVE" *
-rm -rf ../tmp
+cd ..
+rm -rf ./tmp
 echo "Created PCM archive"
