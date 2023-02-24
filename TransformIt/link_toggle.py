@@ -9,5 +9,11 @@ class LinkToggle(wx.BitmapToggleButton):
         super().__init__(parent,
                          label=wx.BitmapBundle(link_image),
                          style=wx.BU_EXACTFIT)
-        self.SetSizeHints(self.Size)
+        sz: wx.Size = link_image.GetSize()
+        wxport = wx.PlatformInformation().PortIdName
+        if wxport == "wxMSW":
+            sz.IncBy(10, 8)
+        else:
+            sz.IncBy(20, 8)
+        self.SetMinClientSize(sz)
         self.SetValue(True)
