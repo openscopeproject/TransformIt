@@ -2,7 +2,7 @@
     "$schema": "https://go.kicad.org/pcm/schemas/v1",
     "name": "Transform It",
     "description": "Batch resize, scale, mirror graphics, tracks, zones, footprints and other items in the PCB editor.",
-    "description_full": "Batch resize, scale, mirror graphics, tracks, zones, footprints and other items in the PCB editor.\nInspired by free transform tool in graphics editors.\nImportant notes:\n* Mirror does not change layers, it transforms in place\n* When a singular footprint is selected it's items are scaled so the footprint itself will become larger/smaller\n* When more than one item is selected footprints are not changed or rescaled, only repositioned/rotated\n* Pads are not rescaled, only repositioned/rotated\n* Rotation center is geometrical center of combined bounding box of all selected items",
+    "description_full": "Batch resize, scale, mirror graphics, tracks, zones, footprints and other items in the PCB editor.\nInspired by free transform tool in graphics editors.\nImportant notes:\n\u2022 Mirror does not change layers, it transforms in place\n\u2022 When a singular footprint is selected it's items are scaled so the footprint itself will become larger/smaller\n\u2022 When more than one item is selected footprints are not changed or rescaled, only repositioned/rotated\n\u2022 Pads are not rescaled, only repositioned/rotated\n\u2022 Rotation center is geometrical center of combined bounding box of all selected items",
     "identifier": "org.openscopeproject.TransformIt",
     "type": "plugin",
     "author": {

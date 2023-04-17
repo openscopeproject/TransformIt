@@ -13,6 +13,7 @@ class Config:
     rotation: float = 0.0
     shape_width: float = 1.0
     track_width: float = 1.0
+    debug_log: bool = False
 
 
 class ConfigDialog(ConfigDialogBase):
@@ -37,7 +38,9 @@ class ConfigDialog(ConfigDialogBase):
             # shape_width
             self.m_shapeWidth.Value * 0.01,
             # track_width
-            self.m_trackWidth.Value * 0.01
+            self.m_trackWidth.Value * 0.01,
+            # enable logging
+            debug_log=self.m_debugLog.IsChecked()
         )
 
     def OnLinkToggle(self, event: wx.CommandEvent):

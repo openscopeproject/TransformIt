@@ -106,6 +106,12 @@ class ConfigDialogBase ( wx.Dialog ):
         fgSizer1.Add( self.m_trackWidth, 0, wx.ALL, 5 )
 
 
+        fgSizer1.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.m_debugLog = wx.CheckBox( self.m_panel, wx.ID_ANY, u"Generate debug log", wx.DefaultPosition, wx.DefaultSize, 0 )
+        fgSizer1.Add( self.m_debugLog, 0, wx.ALL, 5 )
+
+
         bSizer3.Add( fgSizer1, 1, wx.EXPAND, 5 )
 
         self.m_staticline1 = wx.StaticLine( self.m_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
