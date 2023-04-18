@@ -2,6 +2,8 @@
 
 TAG=$(git describe --tags)
 TAG=${TAG#v}
+METADATATAG=$(git describe --tags --abbrev=0)
+METADATATAG=${METADATATAG#v}
 mkdir -p releases/$TAG
 ARCHIVE="releases/$TAG/TransformIt.zip"
 if [ -f "$ARCHIVE" ]; then
@@ -13,7 +15,7 @@ echo "Created $ARCHIVE"
 mkdir -p releases/tmp/resources
 cp icon/icon_64.png releases/tmp/resources/icon.png
 cp metadata_template.json releases/tmp/metadata.json
-sed -i "s/%RELEASE_VERSION_TAG/$TAG/g" releases/tmp/metadata.json
+sed -i "s/%RELEASE_VERSION_TAG/$METADATATAG/g" releases/tmp/metadata.json
 unzip "$ARCHIVE" -d releases/tmp/
 mv releases/tmp/TransformIt releases/tmp/plugins
 

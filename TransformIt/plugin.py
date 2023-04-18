@@ -181,18 +181,23 @@ class TransformItPlugin(pcbnew.ActionPlugin):
                            drawing: pcbnew.BOARD_ITEM,
                            center: pcbnew.VECTOR2I):
         self.logger.debug(
-            "Transforming drawing at %s", drawing.GetPosition())
+            "Transforming drawing type %s (%s) at %s",
+            drawing.Type(), drawing.GetTypeDesc(), drawing.GetPosition())
 
         if isinstance(drawing, pcbnew.FP_SHAPE):
+            self.logger.debug("Drawing is FP_SHAPE")
             self._transform_fp_shape(drawing)
 
         elif isinstance(drawing, pcbnew.PCB_SHAPE):
+            self.logger.debug("Drawing is PCB_SHAPE")
             self._transform_shape(drawing, center)
 
         elif isinstance(drawing, pcbnew.PCB_TRACK):
+            self.logger.debug("Drawing is PCB_TRACK")
             self._transform_track(drawing, center)
 
         elif isinstance(drawing, pcbnew.PAD):
+            self.logger.debug("Drawing is PAD")
             self._transform_pad(drawing)
 
         elif isinstance(drawing, pcbnew.FOOTPRINT):
@@ -205,10 +210,11 @@ class TransformItPlugin(pcbnew.ActionPlugin):
 
         elif (isinstance(drawing, pcbnew.PCB_TEXT) or
               isinstance(drawing, pcbnew.FP_TEXT)):
+            self.logger.debug("Drawing is FP/PCB_TEXT")
             self._transform_text(drawing, center)
 
         elif (isinstance(drawing, pcbnew.ZONE)):
-            self.logger.debug("Transforming zone")
+            self.logger.debug("Drawing is ZONE")
             self._transform_poly_set(drawing.Outline(), center)
             drawing.HatchBorder()
 
