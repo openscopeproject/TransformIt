@@ -39,6 +39,8 @@ class TransformItPlugin(pcbnew.ActionPlugin):
         pass
 
     def _setup_logging(self, board_file: str):
+        self.logger.propagate = False
+
         if self.log_handler is not None:
             self.log_handler.close()
             self.logger.removeHandler(self.log_handler)
@@ -53,6 +55,7 @@ class TransformItPlugin(pcbnew.ActionPlugin):
                 logging.Formatter('%(asctime)s %(levelname)s: %(message)s'))
             self.logger.addHandler(self.log_handler)
             self.logger.setLevel(logging.DEBUG)
+            self.logger.info("Log handlers: %s", self.logger.handlers)
 
     def _transform_point(self,
                          point: pcbnew.VECTOR2I,
