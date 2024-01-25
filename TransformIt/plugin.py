@@ -55,7 +55,6 @@ class TransformItPlugin(pcbnew.ActionPlugin):
                 logging.Formatter('%(asctime)s %(levelname)s: %(message)s'))
             self.logger.addHandler(self.log_handler)
             self.logger.setLevel(logging.DEBUG)
-            self.logger.info("Log handlers: %s", self.logger.handlers)
 
     def _transform_point(self,
                          point: pcbnew.VECTOR2I,
@@ -117,7 +116,9 @@ class TransformItPlugin(pcbnew.ActionPlugin):
 
         shape.SetWidth(int(shape.GetWidth() * self.config.shape_width))
 
-    def _transform_fp_shape(self, shape: pcbnew.FP_SHAPE):
+    # this method has no type hint because kicad 8 does not have FP_SHAPE
+    # it will be called only for FP_SHAPE in kicad 7
+    def _transform_fp_shape(self, shape):
         shape_type = shape.GetShape()
         self.logger.debug("Transforminig footprint shape type %d", shape_type)
 
@@ -161,7 +162,7 @@ class TransformItPlugin(pcbnew.ActionPlugin):
         track.SetWidth(int(track.GetWidth() * self.config.track_width))
 
     def _transform_text(self, text: pcbnew.PCB_TEXT, center: pcbnew.VECTOR2I):
-        self.logger.debug("Transforming text '%s'", text.GetShownText())
+        self.logger.debug("Transforming text '%s'", text.GetText())
 
         text.SetPosition(self._transform_point(text.GetPosition(), center))
         text.SetMirrored(bool(text.IsMirrored()) ^
@@ -173,8 +174,18 @@ class TransformItPlugin(pcbnew.ActionPlugin):
     def _transform_pad(self, pad: pcbnew.PAD):
         self.logger.debug("Transforming pad '%s'", pad.GetPadName())
 
-        pad.SetPos0(self._transform_point(pad.GetPos0(), self.ORIGIN))
-        pad.SetDrawCoord()
+        if hasattr(pad, "SetPos0"):
+            pad.SetPos0(self._transform_point(pad.GetPos0(), self.ORIGIN))
+            pad.SetDrawCoord()
+        else:
+            parent_pos: pcbnew.VECTOR2I = pad.GetParent().GetPosition()
+            pad_pos: pcbnew.VECTOR2I = pad.GetPosition()
+            rel_pos = pcbnew.VECTOR2I(
+                pad_pos.x - parent_pos.x, pad_pos.y - parent_pos.y)
+            rel_pos = self._transform_point(rel_pos, self.ORIGIN)
+            pad_pos = pcbnew.VECTOR2I(
+                parent_pos.x + rel_pos.x, parent_pos.y + rel_pos.y)
+            pad.SetPosition(pad_pos)
 
         pad.Rotate(
             pad.GetPosition(),
@@ -187,7 +198,8 @@ class TransformItPlugin(pcbnew.ActionPlugin):
             "Transforming drawing type %s (%s) at %s",
             drawing.Type(), drawing.GetTypeDesc(), drawing.GetPosition())
 
-        if isinstance(drawing, pcbnew.FP_SHAPE):
+        if (hasattr(pcbnew, "FP_SHAPE")
+                and isinstance(drawing, pcbnew.FP_SHAPE)):
             self.logger.debug("Drawing is FP_SHAPE")
             self._transform_fp_shape(drawing)
 
@@ -212,7 +224,8 @@ class TransformItPlugin(pcbnew.ActionPlugin):
                 pcbnew.EDA_ANGLE(-self.config.rotation, pcbnew.RADIANS_T))
 
         elif (isinstance(drawing, pcbnew.PCB_TEXT) or
-              isinstance(drawing, pcbnew.FP_TEXT)):
+              (hasattr(pcbnew, "FP_TEXT") and
+               isinstance(drawing, pcbnew.FP_TEXT))):
             self.logger.debug("Drawing is FP/PCB_TEXT")
             self._transform_text(drawing, center)
 
